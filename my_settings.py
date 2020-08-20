@@ -5,10 +5,10 @@ SECRET_KEY = {
 DATABASES = {
     'default' : {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'get_refund2',
+        'NAME': 'superfluid',
         'USER': 'root',
         'PASSWORD': 'mysqlHard123^^',
-        'HOST': 'project-database2.cvfnwctpsjzo.us-east-2.rds.amazonaws.com',
+        'HOST': 'localhost',
         'PORT': '3306',
     }
 }
