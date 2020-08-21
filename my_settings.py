@@ -1,6 +1,10 @@
 SECRET_KEY = {
     'secret' : '%q4m0wt*80i*jmw^h#44x+(t_%d^qf3dr3p*sfw_0#n18fara%'
 }
+
+ALGORITHM = {
+    'algorithm' : 'HS256'
+}
     
 DATABASES = {
     'default' : {
