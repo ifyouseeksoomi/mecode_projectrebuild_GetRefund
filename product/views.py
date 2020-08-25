@@ -20,26 +20,11 @@ from product.models import (
     DetailInfo
 )
 
-class ProductListView(View):
-    def get(self, request):
-        products = Product.objects.prefetch_related('image_set').all()
-
-        productlist = [{
-            "product_id"               : product.id,
-            "product_name"             : product.name,
-            "product_group"            : product.group,
-            "product_image"            : product.image_set.get(image_category=1).image_url,
-            "model_image"              : product.image_set.get(image_category=2).image_url,
-            "product_price"            : product.price
-            } for product in products]
-
-        return JsonResponse({'productlist' : productlist}, status=200)
-
-class FilterListView(View):
+class ProductsView(View):
     def get(self, request):
         category_names = request.GET.getlist('category_names', [i.name for i in Category.objects.all()])
         applying_names = request.GET.getlist('applying_names', [i.name for i in Applying.objects.all()])
-        products       = Product.objects.prefetch_related('image_set').filter(Q(category__name = category_names)| Q(applying__name = applying_names))
+        products = Product.objects.prefetch_related('image_set').filter(Q(category__name__in = category_names) & Q(applying__name__in = applying_names))
 
         productlist = [{
             "product_id"    : product.id,
@@ -48,7 +33,7 @@ class FilterListView(View):
             "product_image" : product.image_set.get(image_category=1).image_url,
             "model_image"   : product.image_set.get(image_category=2).image_url,
             "product_price" : product.price
-        } for product in products]
+        } for product in products ]
 
         return JsonResponse({'productlist' : productlist}, status=200)
 
