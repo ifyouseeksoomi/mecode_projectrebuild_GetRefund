@@ -91,6 +91,39 @@ class SignInTest(TestCase):
 
         response = client.post('/user/signin', json.dumps(data), content_type='application/json')
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.json(), {'access_token': access_token })
 
+    def test_signin_fail_by_wrong_password(self):
+        client = Client()
+
+        data = {
+            'email' : 'amy@example.com',
+            'password' : '1111qwer'
+        }
+
+        response = client.post('/user/signin', json.dumps(data), content_type='application/json')
+        self.assertEqual(response.status_code, 401)
+        self.assertEqual(response.json(), {'message':'UNAUTHORIZED'})
+
+    def test_signin_fail_by_key_error(self):
+        client = Client()
         
+        data = {
+            'cmail' : 'amy@example.com',
+            'password' : '1234qwer'
+        }
+
+        response = client.post('/user/signin', json.dumps(data), content_type='application/json')
+        self.assertEqual(response.status_code, 400)
+        self.assertEqual(response.json(), {'message':'KEY_ERROR'})
+
+    def test_signin_fail_by_wrong_email(self):
+        client = Client()
+
+        data = {
+            'email' : 'emma@example.com',
+            'password' : '1234qwer'
+        }
+
+        response = client.post('/user/signin', json.dumps(data), content_type='application/json')
+        self.assertEqual(response.status_code, 401)
+        self.assertEqual(response.json(), {'message': 'UNAUTHORIZED'})
