@@ -22,9 +22,18 @@ from product.models import (
 
 class ProductsView(View):
     def get(self, request):
-        category_names = request.GET.getlist('category_names', [i.name for i in Category.objects.all()])
-        applying_names = request.GET.getlist('applying_names', [i.name for i in Applying.objects.all()])
-        products = Product.objects.prefetch_related('image_set').filter(Q(category__name__in = category_names) & Q(applying__name__in = applying_names))
+        category_names = request.GET.getlist('category_names')
+        applying_names = request.GET.getlist('applying_names')
+
+        q = Q()
+        if category_names:
+            q &= Q(category__name__in=category_names)
+        if applying_names:
+            q &= Q(applying__name__in=applying_names)
+
+#        products = Product.objects.prefetch_related('image_set').filter(Q(category__name__in = category_names) & Q(applying__name__in = applying_names))
+
+        products = Product.objects.prefetch_related('image_set').filter(q)
 
         productlist = [{
             "product_id"    : product.id,
@@ -62,6 +71,8 @@ class ProductDetailView(View):
                 'detail_image'             : [ i.image_url for i in product.image_set.filter(image_category_id=3) ]
             }
 
+            return JsonResponse ({'data':data}, status=200)
+
         else:
             gift_card = Product.objects.prefetch_related('image_set').get(id=product_id)
 
@@ -76,7 +87,7 @@ class ProductDetailView(View):
                 'detail_image'             : gift_card.image_set.get(image_category_id=3).image_url
             }
 
-            return JsonResponse({'data': data})
+            return JsonResponse({'data': data}, status=200)
 
 class PairWithView(View):
     def get(self, request, product_id):

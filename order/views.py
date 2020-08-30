@@ -34,7 +34,7 @@ class CartItemView(View):
                 quantity        = data['quantity']
             )
 
-            return JsonResponse({'message': 'ITEM_SUCCEESSFULLLY_ADDED'}, status=200)
+            return JsonResponse({'message': 'ITEM_SUCCESSFULLY_ADDED'}, status=200)
         return JsonResponse({'message': 'ITEM_ALREADY_EXISTS'}, status=400)
 
     @login_check
