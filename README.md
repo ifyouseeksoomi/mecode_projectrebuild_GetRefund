@@ -8,14 +8,12 @@ Backend: 안솔, 황수미 <br>
 - 실제 프로젝트 시 작성했던 앱: User 앱 API 전체, Product 앱 중 ProductList API
 - 리팩토링 시 작성한 앱: User 앱 API 전체, Product 앱 API 전체, Order 앱 API 전체
 
--------
 
 ## Detail
 - User: 함수형 Decorator을 사용한 유저 검증
 - Product: 상품 리스트 뷰에서 Filtering 시, QueryString과 Q객체를 이용한 쿼리 개선
 - select_related와 prefetch_related를 이용한 캐싱을 통한 DB 접근 횟수 최소화
 
------
 
 ## Built With
 - Python
