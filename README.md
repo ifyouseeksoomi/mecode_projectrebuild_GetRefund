@@ -1,4 +1,3 @@
-# projectrebuild_superfluid
 
 ## ✅ 위코드 2차 팀 프로젝트 Refactoring (개인)
 위코드에서 2차 프로젝트로 진행했던 이탈리안 코스메틱 브랜드 getsuperfluid(https://getsuperfluid.com/) 홈페이지 클론 프로젝트를 개인적으로 다시 리팩토링하였습니다. 
