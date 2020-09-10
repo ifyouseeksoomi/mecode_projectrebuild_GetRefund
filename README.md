@@ -15,7 +15,7 @@ Backend: 안솔, 황수미 <br>
 - User: 함수형 Decorator을 사용한 유저 검증
 - Product: 상품 리스트 뷰에서 Filtering 시, QueryString과 Q객체를 이용한 쿼리 개선
 - select_related와 prefetch_related를 이용한 캐싱을 통한 DB 접근 횟수 최소화
-
+- refactoring 시 작성한 TIL post: https://velog.io/@ifyouseeksoomi/series/wecode-mecode-TIL-ProjectRebuild
 
 ## Built With
 - Python
